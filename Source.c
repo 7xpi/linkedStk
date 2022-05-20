@@ -6,7 +6,7 @@
 #include <math.h>
 #include "stk.h"
 //FILENAME_MAX strcpy_s
-//do on strings
+//TODO freelist func
 struct stk* stkT = NULL;
 
 int main(void) {
@@ -16,18 +16,18 @@ int main(void) {
 	printf_s("Input N: ");
 	scanf_s("%d", &n);
 
-	data_t tmp;
+	char tmp[FILENAME_MAX];
 
 	forn(i, 0, n) {
 		printf_s("Enter a value: ");
-		scanf_s("%d", &tmp);
+		scanf_s("%s", &tmp, FILENAME_MAX-1);
 		push(tmp);
 	}
 
 	printf_s("\nstk:\n");
 	prntfStk(stkT);
 
-	printf_s("\nPop: %d\n", pop());
+	printf_s("\nPop: %s\n", pop());
 	
 	printf_s("\nstk:\n");
 	prntfStk(stkT);
@@ -69,8 +69,8 @@ void prntfStk(void) {
 		return;
 	}
 	while (tmp->next != NULL) {
-		printf_s("%d\n", tmp->data);
+		printf_s("%s\n", tmp->data);
 		tmp = tmp->next;
 	}
-	printf_s("%d\n", tmp->data);
+	printf_s("%s\n", tmp->data);
 }
